@@ -12,7 +12,10 @@ private final static String SEARCH_BY_LOGIN_QUERY = "from User u where u.login=:
     @Override
     public Optional<User> findUserByLogin(String login) {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        Query<User> query = session.createQuery(SEARCH_BY_LOGIN_QUERY, User.class).setParameter("login",login);
-        return Optional.empty();
+        Query<User> query = session.createQuery(SEARCH_BY_LOGIN_QUERY, User.class)
+                .setParameter("login",login);
+        Optional<User> user = query.getResultList().stream().findFirst();
+        session.close();
+        return user;
     }
 }
