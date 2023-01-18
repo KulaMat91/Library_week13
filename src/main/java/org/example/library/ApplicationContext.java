@@ -10,10 +10,10 @@ import java.util.stream.Collectors;
 
 public class ApplicationContext {
 
-    private static ActiveUser ACTIVE_USER;
+    private static ActiveUser activeUser;
 
     public static void setActiveUser(User user) {
-        ACTIVE_USER = new ActiveUser(
+        activeUser = new ActiveUser(
                 user.getLogin(),
                 user.getName(),
                 mapToUserRoles(user.getRoles())
@@ -21,13 +21,15 @@ public class ApplicationContext {
     }
 
     public static ActiveUser getActiveUser() {
-        return ACTIVE_USER;
+        return activeUser;
     }
 
-    private static Set<UserRole> mapToUserRoles(List<Role> roles){
-        return roles.stream().map(role -> UserRole.find(role.getName().toUpperCase()))
+    private static Set<UserRole> mapToUserRoles(List<Role> roles) {
+        return roles.stream().
+                map(role -> UserRole.find(role.getName()))
                 .collect(Collectors.toSet());
     }
 
+//    return roles.stream().map(role -> UserRole.find(role.getName().toUpperCase())).collect(Collectors.toSet());
     //zwraca enuma USER z dużych liter, a gdyby w bazie było z małych user
 }

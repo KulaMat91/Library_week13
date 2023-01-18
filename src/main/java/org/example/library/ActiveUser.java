@@ -9,6 +9,7 @@ import java.util.Set;
 @Getter
 //niemutowalna klas
 public class ActiveUser {
+
     private final String login;
     private final String name;
     private final Set<UserRole> userRoles;
