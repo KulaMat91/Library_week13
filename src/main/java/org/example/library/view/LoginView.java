@@ -10,16 +10,18 @@ public class LoginView implements View {
 
     private final Scanner scanner;
     private final LoginController loginController;
-    private Optional<String> message;
+    private final Optional<String> message;
 
     public LoginView(Scanner scanner) {
         this.scanner = scanner;
         this.loginController = new LoginController();
+        this.message = Optional.empty();
     }
 
-    public LoginView() {
+    public LoginView(Optional<String> message) {
         this.scanner = new Scanner(System.in);
         this.loginController = new LoginController();
+        this.message = message;
     }
 
     public void display() {
@@ -27,7 +29,7 @@ public class LoginView implements View {
     }
 
     public UserLoginData getData() {
-        message.ifPresent();
+        message.ifPresent(System.out::println);
         System.out.println("Podaj login");
         String login = scanner.nextLine();
         System.out.println("Podaj password");

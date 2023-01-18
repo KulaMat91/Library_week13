@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @NoArgsConstructor
-@ToString(exclude ={"roles, address"})
+@ToString(exclude = {"roles", "address"})
 //jexeli chcemy cos wykluczyc ze toStringa aby nie pokazywac
 public class User {
     @Id
@@ -24,14 +24,15 @@ public class User {
     private String name;
     private String email;
     @ManyToMany
-    @JoinTable(name = "User_Role",
-            joinColumns = { @JoinColumn(name = "user_id")},
-            inverseJoinColumns = { @JoinColumn(name = "role_id")}
+    @JoinTable(
+            name = "User_Role",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id")}
     )
     private List<Role> roles;
     // adnotacja @JoinTable tworzy tabelę, po której będzie odbywało się łączenie, tabela asocjacyjna
 
-    @OneToOne(cascade = {CascadeType.PERSIST,CascadeType.REFRESH})
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     //cascade- kaskadowo dodawąć i usuwać adress i role
     private Address address;
 

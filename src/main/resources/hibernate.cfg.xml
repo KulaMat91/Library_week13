@@ -16,6 +16,10 @@
         <mapping class="org.example.library.model.User"/>
         <mapping class="org.example.library.model.Address"/>
         <mapping class="org.example.library.model.Role"/>
+        <mapping class="org.example.library.model.Author"/>
+        <mapping class="org.example.library.model.Category"/>
+        <mapping class="org.example.library.model.Rental"/>
+        <mapping class="org.example.library.model.Book"/>
 
     </session-factory>
 </hibernate-configuration>

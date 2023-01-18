@@ -4,21 +4,21 @@ import org.example.library.api.UserLoginData;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
-class LoginViewTest {
+public class LoginViewTest {
     UserLoginData expectedResult = new UserLoginData("testUser", "testPassword");
 
     @Test
-    void shouldProvideUserLoginDataBaseOnUserInput() {
+    void shouldProvideUserLoginDataBaseOnUserInput() throws FileNotFoundException {
         //given
         LoginView loginView = new LoginView(
-                new Scanner(new File("src/test/resources/view.login/loginUserInput.txt")
-                );
+                new Scanner(new File("src/test/resources/view.login/loginUserInput.txt"))
+        );
         //when
         UserLoginData result = loginView.getData();
 
